@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Nicole Kozuch / Section 002 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -32,16 +32,20 @@ class HashingProblems {
      */
 
     public double getAverage(HashMap<Integer, Integer> map, int[] array) {
+        double total = 0.0, count = 0.0;
 
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOU NAME AT TOP OF FILE
-         *
-         * Note: if NO values found in common between the HashMap and supplied array,
-         * returning 0.0 is NOT correct, as that is not the average value. Whereas
-         * returning 0.0/0.0 IS correct (which would return a non-number).
-         */
+        // Iterates over array, checking if an integer value is in both array and HashMap
+        for (Integer element : array) {
+            if (map.containsKey(element)) {
+                // Adds the element to the total 
+                total += map.get(element);
+                // Update dividend
+                count++;
+            }
+        }
 
-         return 0.0 / 0.0;
+        // Return average
+        return total / count;
   }
 
 
@@ -53,15 +57,18 @@ class HashingProblems {
      */
 
   public ArrayList<String> odd(HashMap<Integer, String> map) {
-    
-      ArrayList<String> result = new ArrayList<>();
+       ArrayList<String> result = new ArrayList<>();
 
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
-
+       // Ensures given HashMap object is not empty
+       if (!map.isEmpty()) {
+            // Traverse through HashMap, checking for keys that are odd
+            for (Integer key : map.keySet()) {
+                if (key % 2 == 1) {
+                    // Add corresponding value from odd key to ArrayList
+                    result.add(map.get(key));
+                }
+            }
+        }
 
       return result;
   }
@@ -105,12 +112,24 @@ class HashingProblems {
    */
 
   public int twoSums(int[] numbers, int k) {
+    // Initialize counter 
+    int appearances = 0; 
 
-      /*
-       * ADD YOUR CODE HERE
-       */
+    // Use HashSet to copy array elements over
+    Set<Integer> temp = new HashSet<>();
+    for (int num : numbers) {
+        temp.add(num);
+    }
+    
+    // Find all elements that their difference equal target value 'k'
+    for (Integer elem : temp) {
+        if (temp.contains(elem - k)) {
+            // Update count
+            appearances++;
+        }
+    }
 
-      return -1;
+    return appearances;
   }
 
 } /* end class HashingProblems */
